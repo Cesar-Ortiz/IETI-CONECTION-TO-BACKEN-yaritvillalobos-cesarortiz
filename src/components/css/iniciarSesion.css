@@ -1,0 +1,16 @@
+#login{
+    text-align: center;
+}
+
+#login form{
+    margin-top:10px;
+}
+#login .square-text{
+    margin:5px;
+    height: 23px;
+}
+#login .submit{
+    width: 80px;
+    font-size: 18px;
+    margin-top:5px;
+}

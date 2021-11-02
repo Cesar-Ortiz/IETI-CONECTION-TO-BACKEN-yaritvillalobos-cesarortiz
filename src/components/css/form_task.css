@@ -1,0 +1,26 @@
+#form_task{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#form_task .field{
+    margin:15px
+}
+#form_task .block-field{
+    width: 200px;
+    height: 20px;
+}
+
+
+#form_task .button{
+    width:80px;
+    margin:5px;
+    height: 25px;
+}
+#form_task .input{
+    background-color: green;
+}
+#form_task .back{
+    background-color: red;
+}

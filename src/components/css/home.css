@@ -1,0 +1,81 @@
+#home{
+    height: 100%;
+    margin: 0 auto;
+    margin-top:30px;
+}
+
+#home #exit{
+    text-align: right;
+}
+
+#home .task{
+    border: 1px solid black;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    
+}
+#peligro{
+    display:none;
+    color:red;
+    text-align:center;
+}
+
+#home .subconjunto{
+ 
+    position: relative;
+    margin:25px;
+    margin-left: 60px;
+
+}
+
+#home .nameTask-1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    margin:8px;
+}
+
+#home .task .button{
+    width: 100%;
+    text-align: right;
+}
+
+#home .stick{
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 85%;
+    z-index: 10;
+
+}
+
+#home .stick .button{
+    width: 40px;
+    position: absolute;
+    right: -1%;
+    cursor: pointer;
+}
+
+#home .task .description,
+#home #newTask{
+    margin: 0 auto;
+    max-width: 800px;
+    width: 95%;
+}
+#home #newTask .button{
+    background-color: green;
+}
+
+#home .task img{
+    display: inline-block;
+    width:30px;
+    height: 30px;
+    left: -40px;
+    top: -7px;
+    position: absolute;
+}
