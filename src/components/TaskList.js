@@ -6,10 +6,16 @@ import { Link } from "react-router-dom";
 import './css/home.css';
 import './css/general.css';
 import logo from './img/signo.png';
-import {Accordion, Center, Button, Input} from "@chakra-ui/react"
+import {ApiLookup, Data} from "../providers/DataProvider";
+import {Accordion, Button, Input} from "@chakra-ui/react"
 
 
 export const TaskList = () => {
+  const info= Data.getData("GET","api/task/all");
+  for (x of info) {
+    console.log(x.name + ' ' + x.email);
+  }
+  
   const { data, setData } = useData();
   const [textValue, setTextValue] = useState("");
   const history = useHistory();

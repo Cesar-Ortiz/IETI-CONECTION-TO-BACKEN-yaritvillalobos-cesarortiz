@@ -101,3 +101,24 @@ export class ApiLookup{
 
   }
 }
+
+export class Data{
+  static getData(method,endpoint){
+    const headers={
+      "Access-Control-Allow-Origin": "*",
+      "Authentication":"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW50aWFnb0BtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjM1ODY1NjQyLCJleHAiOjE2MzU4ODM2NDJ9.bD1UFfyt3tBP4COKi4qzcC7MexYZMweYQUZCOFtxrs9"
+    }
+
+    const BASE_URL = "https://tasks-planner-api.herokuapp.com/"
+
+    axios({
+      method:method,
+      headers:headers,
+      url: BASE_URL + endpoint,
+      responseType: 'json'
+    }).then(function (response) {
+      console.log(response);
+    }).catch((error)=>(console.log(error)))
+  }
+}
+
