@@ -2,13 +2,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useData } from "../providers/DataProvider";
 import './css/form_task.css';
-import {Input, Button} from "@chakra-ui/react"
-
-/*<input 
-            type="checkbox" 
-            onChange={() => setChecked(!checked)} 
-            checked={checked} 
-      />*/
+import {Input, Button, Stack, Select} from "@chakra-ui/react"
 
 export const TaskForm = () => {
   const history = useHistory();
@@ -16,7 +10,6 @@ export const TaskForm = () => {
   const { taskId } = useParams();
   const task = data.tasks.find((task) => task.id === taskId);
   const tasks = data.tasks;
-  //const [ checked, setChecked] = useState(task?.isCompleted ?? false);
   const [text, setText] = useState(task?.name ?? "");
   const [description, setDescription] = useState(task?.description ?? "");
   const [assigTo, setAssingTo] = useState(task?.assignedTo ?? "");
@@ -86,23 +79,22 @@ export const TaskForm = () => {
   }
 
   const buttonAction = () =>{
+    console.log(status);
     if(text!==""){
-    
+      
       if(nameButton === "Update"){
         updateTask();
       }
       else{
         createTask();
       }
-    }else{
-      document.getElementById("peligro").style.display = "block";
     }
   }
   
   return (
     <div id="form_task">
     <form>
-      <h1>Task</h1>
+      <label className="titulos">Task</label>
       <div className="field"><label className="block-field" key="name">Name<br/></label>
       <Input
             className="block-field"
@@ -111,7 +103,6 @@ export const TaskForm = () => {
             value={text}
             onChange={handleChange}
       /></div>
-      <span id="peligro">Colocale el nombre a la tarea</span>
       <div className="field">
       <label className="block-field" key="description">Description<br/></label>
       <Input
@@ -132,12 +123,18 @@ export const TaskForm = () => {
       /></div>
       <div className="field">
       <label className="block-field" key="Status">Status<br/></label>
-      <select id="transporte" value={status} className="block-field" placeholder="status" onChange={handleStatus}>
+      <select  value={status} className="block-field" placeholder="status" onChange={handleStatus}>
       
-        <option value="IN_PROGRESS">IN_PROGRESS</option>
-        <option value="REVIEW">REVIEW</option>
-        <option value="DONE">DONE</option>
+        
       </select>
+      <Stack spacing={3}>
+        <Select id="transporte" value={status} onChange={handleStatus} size="lg" >
+          <option value="TO DO">TO DO</option>
+          <option value="IN_PROGRESS">IN_PROGRESS</option>
+          <option value="REVIEW">REVIEW</option>
+          <option value="DONE">DONE</option>
+        </Select>
+      </Stack>
       </div>
       <div className="field">
       <label className="block-field" key="Date">Due Date<br/></label>
@@ -152,8 +149,8 @@ export const TaskForm = () => {
             max="2021-12-31"
       /> </div>
       
-      <Button className="button back" onClick={() => history.push("/home")}  type="button">Back</Button>
-      <Button type="button" className="input button" onClick={buttonAction}>
+      <Button colorScheme="red" size="md" className="button back" onClick={() => history.push("/home")}  type="button">Back</Button>
+      <Button type="button" colorScheme="teal" size="md" className="input button" onClick={buttonAction}>
         {nameButton}
       </Button>
     </form>

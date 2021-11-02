@@ -1,25 +1,33 @@
 #home{
-    height: 100%;
+    max-width: 600px;
     margin: 0 auto;
     margin-top:30px;
 }
+
+#home .panel{
+    width: 100%;
+    position: relative;
+}
+
+#home .imagen-home{
+    position: absolute;
+    display: inline-block;
+    width: 25px;
+    top:3px;
+}
+
+#home .texto-acordion{
+    display: inline-block;
+    margin-left: 35px;
+}
+
+
+
 
 #home #exit{
     text-align: right;
 }
 
-#home .task{
-    border: 1px solid black;
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    
-}
-#peligro{
-    display:none;
-    color:red;
-    text-align:center;
-}
 
 #home .subconjunto{
  
@@ -29,21 +37,7 @@
 
 }
 
-#home .nameTask-1{
-    text-align: center;
-    font-weight: 700;
-    font-size: 18px;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    cursor: pointer;
-    margin:8px;
-}
 
-#home .task .button{
-    width: 100%;
-    text-align: right;
-}
 
 #home .stick{
 
@@ -59,23 +53,4 @@
     position: absolute;
     right: -1%;
     cursor: pointer;
-}
-
-#home .task .description,
-#home #newTask{
-    margin: 0 auto;
-    max-width: 800px;
-    width: 95%;
-}
-#home #newTask .button{
-    background-color: green;
-}
-
-#home .task img{
-    display: inline-block;
-    width:30px;
-    height: 30px;
-    left: -40px;
-    top: -7px;
-    position: absolute;
 }
