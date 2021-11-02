@@ -47,14 +47,7 @@ export const TaskList = () => {
       };
       setData((prev) => ({ ...prev, tasks: [...tasks, newTask] }));
       
-      document.getElementById("peligro").innerHTML = "Tarea agregada";
-      document.getElementById("peligro").style.display = "block";
-      document.getElementById("peligro").style.color = "green";
-
-    }else{
-      document.getElementById("peligro").innerHTML = "Agrega el nombre de la tarea";
-      document.getElementById("peligro").style.display = "block";
-      document.getElementById("peligro").style.color = "red";
+    
     }
     window.setTimeout(() => {
       document.getElementById("peligro").style.display = "none";
@@ -80,21 +73,20 @@ export const TaskList = () => {
   return (
     <div id="home">
       <div className="stick"><img alt='some value' className="button" src={logo} onClick={handleCreate}/></div>
-      <div id="exit"><Link to = "/">Log out</Link></div>
+      <div id="exit"><Link className="link" to = "/">Log out</Link></div>
       <label class="titulos">List Tasks</label>
     <article>
       <div id="newTask">
         <form onSubmit={handleSubmit}>
-          <Input
+          <Input marginBottom="10px"
             value={textValue}
             onChange={handleTextChange}
             type="text"
             placeholder="Task name"
           />
-          <Button class="button">Create Task</Button>
-        </form>
-      
-      <span id="peligro">Colocale el nombre a la tarea</span>
+          <Button colorScheme="teal" marginBottom="30px" className="button" size="md">Create Task</Button>
+        </form> 
+      </div>
       <ul>
         {tasks.map((task, index) => {
           return (
@@ -113,7 +105,7 @@ export const TaskList = () => {
           );
         })}
       </ul>
-      </div>
+      
     </article>
     </div>
   );

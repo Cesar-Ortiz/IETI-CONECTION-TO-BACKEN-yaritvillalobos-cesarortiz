@@ -3,4 +3,9 @@
     font-weight: 700;
     display: block;
     text-align: center;
+    margin-bottom: 30px;
+}
+.link{
+    color:cornflowerblue;
+    text-decoration: underline;
 }
