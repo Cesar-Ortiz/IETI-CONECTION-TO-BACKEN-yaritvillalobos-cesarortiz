@@ -1,44 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export const tasks = [
-  {
-    id: "1",
-    isCompleted: false,
-    name: "Arreglar checklist",
-    description: "Arreglar el checklist del edit",
-    status:"DONE",
-    assignedTo:"Yarit",
-    dueDate:"2021-11-30"
-  },
-  {
-    id: "2",
-    isCompleted: false,
-    name: "Limpiar el campo",
-    description: "Limpiar el campo del create task cuando se crea tarea",
-    status:"IN_PROGRESS",
-    assignedTo:"Cesar",
-    dueDate:"2021-10-27"
-  },
-  {
-    id: "3",
-    isCompleted: false,
-    name: "Mejorar el UI",
-    description: "Mejorar el UI usando CSS",
-    status:"REVIEW",
-    assignedTo:"Yarit",
-    dueDate:"2021-10-20"
-  },
-  {
-    id: "4",
-    isCompleted: false,
-    name: "Modificar la estructura del proyecto",
-    description: "Modificar la estructura del proyecto(UI y lógica) para que el Task tenga los siguientes campos: [name, description,assignedTo, dueDate, [status(TODO, IN_PROGRESS,REVIEW, DONE)]",
-    status:"IN_PROGRESS",
-    assignedTo:"Cesar",
-    dueDate:"2021-11-13"
-  }
-];
+export const tasks = [];
 
 const initialData = { tasks };
 
@@ -62,6 +25,7 @@ export class ApiLookup{
 
   static setCookie(cname, cvalue) {
     document.cookie = cname + "=" + cvalue + ";path=/";
+    console.log(document.cookie);
   }
 
   static getCookie(cname) {
@@ -84,7 +48,7 @@ export class ApiLookup{
 
     const headers={
       "Content-Type":"application/json",
-      "Authentication":"Bearer "+this.getCookie('taskToken'),
+      "Authorization":"Bearer "+this.getCookie('taskToken'),
       "Access-Control-Allow-Origin": "http://localhost:3000"
     }
 
@@ -97,28 +61,8 @@ export class ApiLookup{
       headers:headers,
       url: BASE_URL + endpoint,
       data:data
-    }).then((data)=>callback(data)).catch((error)=>(console.log(error)))
+    }).then((data)=>{callback(data)}).catch((error)=>(console.log(error)))
 
+    //axios.defaults.headers.common['Authorization'] = "Bearer "+this.getCookie('taskToken');
   }
 }
-
-export class Data{
-  static getData(method,endpoint){
-    const headers={
-      "Access-Control-Allow-Origin": "*",
-      "Authentication":"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW50aWFnb0BtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjM1ODY1NjQyLCJleHAiOjE2MzU4ODM2NDJ9.bD1UFfyt3tBP4COKi4qzcC7MexYZMweYQUZCOFtxrs9"
-    }
-
-    const BASE_URL = "https://tasks-planner-api.herokuapp.com/"
-
-    axios({
-      method:method,
-      headers:headers,
-      url: BASE_URL + endpoint,
-      responseType: 'json'
-    }).then(function (response) {
-      console.log(response);
-    }).catch((error)=>(console.log(error)))
-  }
-}
-
