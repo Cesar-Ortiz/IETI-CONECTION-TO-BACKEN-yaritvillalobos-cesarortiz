@@ -28,7 +28,15 @@ export const TaskList = () => {
   const handleTaskChange = (index) => () => {
   };
 
-  const newTask = (name) => {    
+  const newTask = (name) => {  
+    let newTasks = {
+      name: name,
+      description: "No hay descripcion",
+      status: "TODO",
+      assignedTo: "No se ha asignado",
+      dueDate: "2020-12-04T19:15:05.000+0000"
+    }
+    ApiLookup.lookup("POST","api/task",(data)=> {},JSON.stringify(newTasks));
   };
 
   const handleSubmit = (event) => {
@@ -43,7 +51,7 @@ export const TaskList = () => {
   };
 
   const handleCreate = () => {
-    ///history.push("/Task_create");
+    history.push("/Task_create");
   }
 
   

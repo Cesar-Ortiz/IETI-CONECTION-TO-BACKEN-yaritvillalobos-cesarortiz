@@ -48,20 +48,23 @@ export class ApiLookup{
 
     const headers={
       "Content-Type":"application/json",
-      "Authorization":"Bearer "+this.getCookie('taskToken'),
+      "Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW50aWFnb0BtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjM1OTgyMDg5LCJleHAiOjE2MzYwMDAwODl9.IgfYAkWHywqYXwz7Fsh8hFe5auqE50fbtzxn7iFqzv8",
       "Access-Control-Allow-Origin": "http://localhost:3000"
     }
 
     const BASE_URL = "https://tasks-planner-api.herokuapp.com/"
 
-    console.log(data);
+    console.log("data "+ data);
+    /*console.log("endpoint "+ endpoint);
+    console.log("method "+ method);
+    console.log("callback "+ callback);*/
 
     axios({
       method:method,
       headers:headers,
       url: BASE_URL + endpoint,
-      data:data
-    }).then((data)=>{callback(data)}).catch((error)=>(console.log(error)))
+      data: data
+    }).then((data)=>{callback(data)})
 
     //axios.defaults.headers.common['Authorization'] = "Bearer "+this.getCookie('taskToken');
   }
