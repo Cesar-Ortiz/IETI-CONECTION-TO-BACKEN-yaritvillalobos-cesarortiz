@@ -34,9 +34,9 @@ export const TaskList = () => {
       description: "No hay descripcion",
       status: "TODO",
       assignedTo: "No se ha asignado",
-      dueDate: "2020-12-04T19:15:05.000+0000"
+      dueDate: Date.now()
     }
-    ApiLookup.lookup("POST","api/task",(data)=> {},JSON.stringify(newTasks));
+    ApiLookup.lookup("POST","api/task",(data)=> {ApiLookup.lookup("GET","api/task/all",(data)=> {setData((prev) => ({ ...prev, tasks: data.data }))},"hola")},newTasks);
   };
 
   const handleSubmit = (event) => {

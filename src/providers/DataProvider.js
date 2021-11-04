@@ -48,7 +48,7 @@ export class ApiLookup{
 
     const headers={
       "Content-Type":"application/json",
-      "Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW50aWFnb0BtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjM1OTgyMDg5LCJleHAiOjE2MzYwMDAwODl9.IgfYAkWHywqYXwz7Fsh8hFe5auqE50fbtzxn7iFqzv8",
+      "Authorization":"Bearer "+this.getCookie('taskToken'),
       "Access-Control-Allow-Origin": "http://localhost:3000"
     }
 
