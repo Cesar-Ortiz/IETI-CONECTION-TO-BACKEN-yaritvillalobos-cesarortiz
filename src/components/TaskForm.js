@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useData } from "../providers/DataProvider";
+import {ApiLookup } from "../providers/DataProvider";
 import './css/form_task.css';
 import {Input, Button, Stack, Select} from "@chakra-ui/react"
 
@@ -8,8 +9,9 @@ export const TaskForm = () => {
   const history = useHistory();
   const { data, setData } = useData();
   const { taskId } = useParams();
-  const task = data.tasks.find((task) => task.id === taskId);
   const tasks = data.tasks;
+  const task = data.tasks.find((task) => task.id === taskId);
+  
   const [text, setText] = useState(task?.name ?? "");
   const [description, setDescription] = useState(task?.description ?? "");
   const [assigTo, setAssingTo] = useState(task?.assignedTo ?? "");
@@ -43,34 +45,36 @@ export const TaskForm = () => {
   }
 
   const updateTask = () => {
-    const newTasks = data.tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, name: text, isCompleted: "false" , description: description ,assignedTo: assigTo,
-          dueDate: date, status: status};
-      }
-      return task
-    });
-
-    setData((prev) => ({ ...prev, tasks: newTasks }));
-
-    history.goBack();
+    const newTasks = { 
+      id: taskId,
+      name: text, 
+      description: description ,
+      status: status , 
+      assignedTo: assigTo,
+      dueDate: date
+    };
+    const newTasks2 = { 
+      name: text, 
+      description: description ,
+      status: status , 
+      assignedTo: assigTo,
+      dueDate: date
+    };
+    ApiLookup.lookup("PUT","api/task/"+taskId,(data)=> {ApiLookup.lookup("GET","api/task/all",(data)=> {setData((prev) => ({ ...prev, tasks: newTasks2 }))},"hola");
+      history.push("/home")},newTasks);
   };
   
   const createTask = () => {
-    const idstr = tasks.length+1;
     const newTask = {
-      id: idstr.toString(),
-      isCompleted: false,
       name: text,
       description: description!=="" ? description : "No hay descripcion",
       status: status,
       assignedTo: assigTo!=="" ? assigTo : "No se ha asignado",
-      dueDate: date!=="" ? date : "No se ha programado fecha"
+      dueDate: Date.now()
     };
-
-    setData((prev) => ({ ...prev, tasks: [...tasks, newTask]}));
-
-    history.goBack();
+    ApiLookup.lookup("POST","api/task",(data)=> {ApiLookup.lookup("GET","api/task/all",(data)=> {setData((prev) => ({ ...prev, tasks: data.data }))},"hola");
+      history.push("/home")},newTask);
+    
   };
 
   let nameButton = "Update";

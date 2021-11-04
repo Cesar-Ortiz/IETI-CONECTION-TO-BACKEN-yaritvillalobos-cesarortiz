@@ -35,11 +35,10 @@ export const TaskItem = ({ id, taskName, description, status, assignedTo, dueDat
           </AccordionPanel>
           <div className="panel">
             <AccordionPanel pb={4}>
-            <div className="imagen-home">
+              <div className="imagen-home">
                 <Image className="imagen-home" width="100%" src={imagen} />
               </div>
               <label className="texto-acordion">{status}</label>
-              
             </AccordionPanel>
           </div>
           <div className="panel">
