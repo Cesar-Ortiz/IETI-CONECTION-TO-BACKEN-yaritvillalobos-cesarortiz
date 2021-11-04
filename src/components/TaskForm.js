@@ -53,14 +53,7 @@ export const TaskForm = () => {
       assignedTo: assigTo,
       dueDate: date
     };
-    const newTasks2 = { 
-      name: text, 
-      description: description ,
-      status: status , 
-      assignedTo: assigTo,
-      dueDate: date
-    };
-    ApiLookup.lookup("PUT","api/task/"+taskId,(data)=> {ApiLookup.lookup("GET","api/task/all",(data)=> {setData((prev) => ({ ...prev, tasks: newTasks2 }))},"hola");
+    ApiLookup.lookup("PUT","api/task/"+taskId,(data)=> {ApiLookup.lookup("GET","api/task/all",(data)=> {setData((prev) => ({ ...prev, tasks: data.data }))},"hola");
       history.push("/home")},newTasks);
   };
   
